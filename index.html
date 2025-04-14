@@ -3,62 +3,845 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevToolkit.Store - 开发者工具导航站</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>DevToolsNav - 独立开发者工具导航</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --card-radius: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        .search-bar {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 20px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            font-size: 14px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .category-btn {
+            background-color: rgba(255,255,255,0.2);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
+        /* Main Content */
+        .tools-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+        }
+        
+        .section-header a {
+            font-weight: 500;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .tool-card {
+            background-color: white;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        
+        .tool-header {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .tool-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #f5f7fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+        
+        .tool-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .tool-subtitle {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .tool-body {
+            padding: 15px;
+        }
+        
+        .tool-desc {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .tool-features {
+            list-style-type: none;
+            margin-bottom: 15px;
+        }
+        
+        .tool-features li {
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: baseline;
+        }
+        
+        .tool-features li:before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .tool-tag {
+            background-color: #f0f4f8;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #666;
+        }
+        
+        .tool-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background-color: #f9f9f9;
+        }
+        
+        .tool-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #f39c12;
+        }
+        
+        .tool-type {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        
+        .free {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .paid {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        
+        .freemium {
+            background-color: #fff8e1;
+            color: #ff8f00;
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            background-color: white;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .filter-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .filter-reset {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-group {
+            min-width: 200px;
+        }
+        
+        .filter-group-title {
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .filter-group-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .filter-option {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #f0f4f8;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .filter-option:hover {
+            background-color: #e1e8ed;
+        }
+        
+        .filter-option.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            .search-bar {
+                margin: 15px 0;
+                max-width: 100%;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>DevToolkit.Store</h1>
-        <p>精选实用开发者工具导航</p>
+        <div class="container navbar">
+            <div class="logo">Dev<span>ToolsNav</span></div>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索开发工具...">
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="nav-link">首页</a>
+                <a href="#" class="nav-link">分类</a>
+                <a href="#" class="nav-link">推荐</a>
+                <a href="#" class="nav-link">提交工具</a>
+            </nav>
+        </div>
     </header>
     
-    <main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>发现最佳开发者工具</h1>
+            <p>精选优质工具，助力独立开发者提升效率，解决问题，专注创造</p>
+            <div class="categories">
+                <button class="category-btn">前端开发</button>
+                <button class="category-btn">后端开发</button>
+                <button class="category-btn">移动开发</button>
+                <button class="category-btn">DevOps</button>
+                <button class="category-btn">AI/机器学习</button>
+                <button class="category-btn">设计与协作</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <div class="filter-header">
+                <div class="filter-title">筛选工具</div>
+                <div class="filter-reset">重置筛选</div>
+            </div>
+            <div class="filter-options">
+                <div class="filter-group">
+                    <div class="filter-group-title">价格类型</div>
+                    <div class="filter-group-options">
+                        <span class="filter-option active">全部</span>
+                        <span class="filter-option">免费</span>
+                        <span class="filter-option">付费</span>
+                        <span class="filter-option">免费增值</span>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <div class="filter-group-title">开源状态</div>
+                    <div class="filter-group-options">
+                        <span class="filter-option active">全部</span>
+                        <span class="filter-option">开源</span>
+                        <span class="filter-option">闭源</span>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <div class="filter-group-title">难易程度</div>
+                    <div class="filter-group-options">
+                        <span class="filter-option active">全部</span>
+                        <span class="filter-option">初学者</span>
+                        <span class="filter-option">中级</span>
+                        <span class="filter-option">高级</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Front-end Tools Section -->
         <section class="tools-section">
-            <h2>设计工具</h2>
-            <div class="tools-container">
-                <!-- Sketch -->
+            <div class="section-header">
+                <h2>前端开发工具</h2>
+                <a href="#">查看全部 →</a>
+            </div>
+            <div class="tools-grid">
+                <!-- Tool Card -->
                 <div class="tool-card">
-                    <div class="tool-content">
-                        <h3 class="tool-title">Sketch</h3>
-                        <p class="tool-description">专业数字设计工具，专为macOS设计，提供矢量编辑、原型设计和协作功能。优雅的界面和高效的工作流程使其成为UI/UX设计师的首选工具之一。</p>
-                        <div class="tool-tags">
-                            <span class="tool-tag">UI设计</span>
-                            <span class="tool-tag">macOS</span>
-                            <span class="tool-tag">付费</span>
-                            <span class="tool-tag">矢量设计</span>
+                    <div class="tool-header">
+                        <div class="tool-icon">R</div>
+                        <div>
+                            <div class="tool-title">React</div>
+                            <div class="tool-subtitle">Facebook开源UI库</div>
                         </div>
                     </div>
-                    <a href="https://www.sketch.com/" class="tool-link" target="_blank">访问</a>
-                </div>
-
-                <!-- Adobe XD -->
-                <div class="tool-card">
-                    <div class="tool-content">
-                        <h3 class="tool-title">Adobe XD</h3>
-                        <p class="tool-description">Adobe的UI/UX设计和原型设计工具，无缝集成Adobe创意套件。支持从线框图到交互原型的全流程设计，提供共享和协作功能。</p>
+                    <div class="tool-body">
+                        <p class="tool-desc">用于构建用户界面的JavaScript库，采用组件化开发方式</p>
+                        <ul class="tool-features">
+                            <li>组件化开发模式</li>
+                            <li>虚拟DOM高效渲染</li>
+                            <li>单向数据流</li>
+                            <li>丰富的生态系统</li>
+                        </ul>
                         <div class="tool-tags">
-                            <span class="tool-tag">UI设计</span>
-                            <span class="tool-tag">原型设计</span>
-                            <span class="tool-tag">Adobe</span>
-                            <span class="tool-tag">订阅制</span>
+                            <span class="tool-tag">JavaScript</span>
+                            <span class="tool-tag">UI库</span>
+                            <span class="tool-tag">组件化</span>
                         </div>
                     </div>
-                    <a href="https://www.adobe.com/products/xd.html" class="tool-link" target="_blank">访问</a>
+                    <div class="tool-footer">
+                        <div class="tool-rating">★★★★★</div>
+                        <div class="tool-type free">免费</div>
+                    </div>
                 </div>
-
-                <!-- Canva -->
+                
+                <!-- Tool Card -->
                 <div class="tool-card">
-                    <div class="tool-content">
-                        <h3 class="tool-title">Canva</h3>
-                        <p class="tool-description">简单易用的在线图形设计平台，允许非专业设计师快速创建专业外观的图形。提供海量模板、元素和字体，适合社交媒体图片、演示文稿等设计。</p>
-                        <div class="tool-tags">
-                            <span class="tool-tag">图形设计</span>
-                            <span class="tool-tag">云端</span>
-                            <span class="tool-tag">初学者友好</span>
-                            <span class="tool-tag">免费增值</span>
+                    <div class="tool-header">
+                        <div class="tool-icon">V</div>
+                        <div>
+                            <div class="tool-title">Vite</div>
+                            <div class="tool-subtitle">现代前端构建工具</div>
                         </div>
                     </div>
-                    <a href="https://www.canva.com/" class="tool-link" target="_blank">访问</a>
+                    <div class="tool-body">
+                        <p class="tool-desc">下一代前端开发与构建工具，显著提升开发体验</p>
+                        <ul class="tool-features">
+                            <li>极速的冷启动</li>
+                            <li>即时的模块热更新</li>
+                            <li>真正的按需编译</li>
+                            <li>优化的构建</li>
+                        </ul>
+                        <div class="tool-tags">
+                            <span class="tool-tag">构建工具</span>
+                            <span class="tool-tag">开发服务器</span>
+                            <span class="tool-tag">ESM</span>
+                        </div>
+                    </div>
+                    <div class="tool-footer">
+                        <div class="tool-rating">★★★★★</div>
+                        <div class="tool-type free">免费</div>
+                    </div>
                 </div>
-
-                <!-- Figma --
+                
+                <!-- Tool Card -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">T</div>
+                        <div>
+                            <div class="tool-title">Tailwind CSS</div>
+                            <div class="tool-subtitle">功能优先的CSS框架</div>
+                        </div>
+                    </div>
+                    <div class="tool-body">
+                        <p class="tool-desc">一个功能类优先的CSS框架，用于快速构建自定义设计</p>
+                        <ul class="tool-features">
+                            <li>原子化CSS类</li>
+                            <li>响应式设计</li>
+                            <li>黑暗模式支持</li>
+                            <li>可定制性强</li>
+                        </ul>
+                        <div class="tool-tags">
+                            <span class="tool-tag">CSS</span>
+                            <span class="tool-tag">设计</span>
+                            <span class="tool-tag">响应式</span>
+                        </div>
+                    </div>
+                    <div class="tool-footer">
+                        <div class="tool-rating">★★★★★</div>
+                        <div class="tool-type free">免费</div>
+                    </div>
+                </div>
+                
+                <!-- Tool Card -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">N</div>
+                        <div>
+                            <div class="tool-title">Next.js</div>
+                            <div class="tool-subtitle">React框架</div>
+                        </div>
+                    </div>
+                    <div class="tool-body">
+                        <p class="tool-desc">用于生产环境的React框架，支持SSR、SSG等多种渲染方式</p>
+                        <ul class="tool-features">
+                            <li>服务端渲染(SSR)</li>
+                            <li>静态站点生成(SSG)</li>
+                            <li>文件系统路由</li>
+                            <li>API路由内置</li>
+                        </ul>
+                        <div class="tool-tags">
+                            <span class="tool-tag">React</span>
+                            <span class="tool-tag">SSR</span>
+                            <span class="tool-tag">全栈</span>
+                        </div>
+                    </div>
+                    <div class="tool-footer">
+                        <div class="tool-rating">★★★★★</div>
+                        <div class="tool-type free">免费</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Backend Tools Section -->
+        <section class="tools-section">
+            <div class="section-header">
+                <h2>后端开发工具</h2>
+                <a href="#">查看全部 →</a>
+            </div>
+            <div class="tools-grid">
+                <!-- Tool Card -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">N</div>
+                        <div>
+                            <div class="tool-title">Node.js</div>
+                            <div class="tool-subtitle">JavaScript运行时</div>
+                        </div>
+                    </div>
+                    <div class="tool-body">
+                        <p class="tool-desc">基于Chrome V8引擎的JavaScript运行环境，使JS可在服务端运行</p>
+                        <ul class="tool-features">
+                            <li>非阻塞I/O模型</li>
+                            <li>事件驱动架构</li>
+                            <li>丰富的NPM生态</li>
+                            <li>跨平台兼容性</li>
+                        </ul>
+                        <div class="tool-tags">
+                            <span class="tool-tag">JavaScript</span>
+                            <span class="tool-tag">服务端</span>
+                            <span class="tool-tag">运行时</span>
+                        </div>
+                    </div>
+                    <div class="tool-footer">
+                        <div class="tool-rating">★★★★★</div>
+                        <div class="tool-type free">免费</div>
+                    </div>
+                </div>
+                
+                <!-- Tool Card -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">E</div>
+                        <div>
+                            <div class="tool-title">Express</div>
+                            <div class="tool-subtitle">Node.js Web框架</div>
+                        </div>
+                    </div>
+                    <div class="tool-body">
+                        <p class="tool-desc">快速、简洁、灵活的Node.js Web应用框架</p>
+                        <ul class="tool-features">
+                            <li>轻量级API</li>
+                            <li>高性能路由</li>
+                            <li>丰富的中间件</li>
+                            <li>易于扩展</li>
+                        </ul>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Node.js</span>
+                            <span class="tool-tag">Web框架</span>
+                            <span class="tool-tag">API</span>
+                        </div>
+                    </div>
+                    <div class="tool-footer">
+                        <div class="tool-rating">★★★★★</div>
+                        <div class="tool-type free">免费</div>
+                    </div>
+                </div>
+                
+                <!-- Tool Card -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">P</div>
+                        <div>
+                            <div class="tool-title">PostgreSQL</div>
+                            <div class="tool-subtitle">开源关系型数据库</div>
+                        </div>
+                    </div>
+                    <div class="tool-body">
+                        <p class="tool-desc">强大的开源对象关系数据库系统，注重可靠性和数据完整性</p>
+                        <ul class="tool-features">
+                            <li>ACID事务支持</li>
+                            <li>JSON数据支持</li>
+                            <li>高扩展性</li>
+                            <li>强大的SQL扩展</li>
+                        </ul>
+                        <div class="tool-tags">
+                            <span class="tool-tag">数据库</span>
+                            <span class="tool-tag">SQL</span>
+                            <span class="tool-tag">关系型</span>
+                        </div>
+                    </div>
+                    <div class="tool-footer">
+                        <div class="tool-rating">★★★★★</div>
+                        <div class="tool-type free">免费</div>
+                    </div>
+                </div>
+                
+                <!-- Tool Card -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">D</div>
+                        <div>
+                            <div class="tool-title">Django</div>
+                            <div class="tool-subtitle">Python Web框架</div>
+                        </div>
+                    </div>
+                    <div class="tool-body">
+                        <p class="tool-desc">高级Python Web框架，鼓励快速开发和简洁实用的设计</p>
+                        <ul class="tool-features">
+                            <li>内置ORM</li>
+                            <li>自动管理界面</li>
+                            <li>强大的URL路由</li>
+                            <li>模板系统</li>
+                        </ul>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Python</span>
+                            <span class="tool-tag">Web框架</span>
+                            <span class="tool-tag">全栈</span>
+                        </div>
+                    </div>
+                    <div class="tool-footer">
+                        <div class="tool-rating">★★★★★</div>
+                        <div class="tool-type free">免费</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mobile Development Tools Section -->
+        <section class="tools-section">
+            <div class="section-header">
+                <h2>移动开发工具</h2>
+                <a href="#">查看全部 →</a>
+            </div>
+            <div class="tools-grid">
+                <!-- Tool Card -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">RN</div>
+                        <div>
+                            <div class="tool-title">React Native</div>
+                            <div class="tool-subtitle">跨平台移动应用框架</div>
+                        </div>
+                    </div>
+                    <div class="tool-body">
+                        <p class="tool-desc">使用React构建原生移动应用的开源框架</p>
+                        <ul class="tool-features">
+                            <li>跨平台兼容性</li>
+                            <li>原生性能体验</li>
+                            <li>热重载</li>
+                            <li>大型社区支持</li>
+                        </ul>
+                        <div class="tool-tags">
+                            <span class="tool-tag">React</span>
+                            <span class="tool-tag">移动开发</span>
+                            <span class="tool-tag">跨平台</span>
+                        </div>
+                    </div>
+                    <div class="tool-footer">
+                        <div class="tool-rating">★★★★★</div>
+                        <div class="tool-type free">免费</div>
+                    </div>
+                </div>
+                
+                <!-- Tool Card -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">F</div>
+                        <div>
+                            <div class="tool-title">Flutter</div>
+                            <div class="tool-subtitle">UI工具包</div>
+                        </div>
+                    </div>
+                    <div class="tool-body">
+                        <p class="tool-desc">Google开源UI工具包，用于构建跨平台的高性能应用</p>
+                        <ul class="tool-features">
+                            <li>快速开发</li>
+                            <li>表现力强的UI</li>
+                            <li>原生性能</li>
+                            <li>热重载</li>
+                        </ul>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Dart</span>
+                            <span class="tool-tag">跨平台</span>
+                            <span class="tool-tag">UI</span>
+                        </div>
+                    </div>
+                    <div class="tool-footer">
+                        <div class="tool-rating">★★★★★</div>
+                        <div class="tool-type free">免费</div>
+                    </div>
+                </div>
+                
+                <!-- Tool Card -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">X</div>
+                        <div>
+                            <div class="tool-title">Xamarin</div>
+                            <div class="tool-subtitle">C#跨平台框架</div>
+                        </div>
+                    </div>
+                    <div class="tool-body">
+                        <p class="tool-desc">微软开源框架，使用C#开发跨平台移动应用</p>
+                        <ul class="tool-features">
+                            <li>C#语言开发</li>
+                            <li>.
