@@ -1,1 +1,32 @@
+.logo {
+    margin-bottom: 10px;
+}
 
+.search-bar {
+    width: 100%;
+    max-width: none;
+    margin: 15px 0;
+}
+
+.main-nav ul {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.main-nav li {
+    margin-left: 0;
+}
+
+.tools-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.footer-content {
+    flex-direction: column;
+    gap: 30px;
+}
+
+.footer-links {
+    flex-direction: column;
+    gap: 20px;
+}
