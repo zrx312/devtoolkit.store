@@ -1,32 +1,72 @@
-.logo {
-    margin-bottom: 10px;
+/* 工具列表样式 */
+.tool-category {
+  margin-bottom: 30px;
 }
 
-.search-bar {
-    width: 100%;
-    max-width: none;
-    margin: 15px 0;
+.tool-category h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 600;
 }
 
-.main-nav ul {
-    width: 100%;
-    justify-content: space-between;
+.tool-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
 }
 
-.main-nav li {
-    margin-left: 0;
+.tool-item {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
 }
 
-.tools-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+.tool-item h4 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 600;
 }
 
-.footer-content {
-    flex-direction: column;
-    gap: 30px;
+.tool-item p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+  line-height: 1.4;
 }
 
-.footer-links {
-    flex-direction: column;
-    gap: 20px;
+.tool-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tag {
+  font-size: 12px;
+  background-color: #f0f8ff;
+  color: #2196F3;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.tool-link {
+  display: inline-block;
+  font-size: 13px;
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.tool-link:hover {
+  text-decoration: underline;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .tool-list {
+    grid-template-columns: 1fr;
+  }
 }
