@@ -1,303 +1,204 @@
-<!-- 前端开发工具 - 补充剩余工具 -->
-<div class="tool-item">
-  <h4>Tailwind CSS</h4>
-  <p>功能优先的CSS框架，无需编写CSS代码即可构建自定义设计</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费</span>
-  </div>
-  <a href="https://tailwindcss.com" class="visit-link">访问官网</a>
-</div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevToolKit - 开发者工具导航</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1><i class="bi bi-code-square"></i> DevToolKit</h1>
+            </div>
+            <div class="search-box">
+                <i class="bi bi-search"></i>
+                <input type="text" id="search" placeholder="搜索开发工具...">
+            </div>
+            <div class="theme-toggle">
+                <i class="bi bi-moon-fill" id="theme-toggle-btn"></i>
+            </div>
+        </div>
+    </header>
 
-<div class="tool-item">
-  <h4>Next.js</h4>
-  <p>基于React的框架，用于服务端渲染和静态站点生成</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费</span>
-  </div>
-  <a href="https://nextjs.org" class="visit-link">访问官网</a>
-</div>
+    <main>
+        <div class="container">
+            <div class="category" id="frontend">
+                <h2><i class="bi bi-window"></i> 前端开发</h2>
+                <div class="tools-grid">
+                    <a href="https://caniuse.com" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-check2-circle"></i></div>
+                        <h3>Can I Use</h3>
+                        <p>浏览器特性兼容性查询</p>
+                    </a>
+                    <a href="https://codepen.io" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-pencil-square"></i></div>
+                        <h3>CodePen</h3>
+                        <p>在线代码编辑器和前端展示平台</p>
+                    </a>
+                    <a href="https://tailwindcss.com" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-palette"></i></div>
+                        <h3>Tailwind CSS</h3>
+                        <p>实用优先的CSS框架</p>
+                    </a>
+                    <a href="https://vitejs.dev" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-lightning-charge"></i></div>
+                        <h3>Vite</h3>
+                        <p>现代前端构建工具</p>
+                    </a>
+                </div>
+            </div>
 
-<!-- 后端开发工具 -->
-<h3>后端开发工具</h3>
+            <div class="category" id="backend">
+                <h2><i class="bi bi-server"></i> 后端开发</h2>
+                <div class="tools-grid">
+                    <a href="https://nodejs.org" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-filetype-js"></i></div>
+                        <h3>Node.js</h3>
+                        <p>JavaScript运行时环境</p>
+                    </a>
+                    <a href="https://www.postman.com" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-send"></i></div>
+                        <h3>Postman</h3>
+                        <p>API开发和测试工具</p>
+                    </a>
+                    <a href="https://redis.io" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-database"></i></div>
+                        <h3>Redis</h3>
+                        <p>内存数据结构存储</p>
+                    </a>
+                    <a href="https://expressjs.com" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-box"></i></div>
+                        <h3>Express</h3>
+                        <p>Node.js Web应用框架</p>
+                    </a>
+                </div>
+            </div>
 
-<div class="tool-item">
-  <h4>Node.js</h4>
-  <p>JavaScript运行环境，用于构建快速且可扩展的服务端应用</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费</span>
-  </div>
-  <a href="https://nodejs.org" class="visit-link">访问官网</a>
-</div>
+            <div class="category" id="design">
+                <h2><i class="bi bi-brush"></i> 设计工具</h2>
+                <div class="tools-grid">
+                    <a href="https://figma.com" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-vector-pen"></i></div>
+                        <h3>Figma</h3>
+                        <p>协作界面设计工具</p>
+                    </a>
+                    <a href="https://coolors.co" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-palette2"></i></div>
+                        <h3>Coolors</h3>
+                        <p>配色方案生成器</p>
+                    </a>
+                    <a href="https://fonts.google.com" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-type"></i></div>
+                        <h3>Google Fonts</h3>
+                        <p>免费开源字体库</p>
+                    </a>
+                    <a href="https://fontawesome.com" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-icons"></i></div>
+                        <h3>Font Awesome</h3>
+                        <p>图标库和工具包</p>
+                    </a>
+                </div>
+            </div>
 
-<div class="tool-item">
-  <h4>Django</h4>
-  <p>Python高级Web框架，鼓励快速开发和简洁设计</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费</span>
-  </div>
-  <a href="https://www.djangoproject.com" class="visit-link">访问官网</a>
-</div>
+            <div class="category" id="editors">
+                <h2><i class="bi bi-code"></i> 代码编辑器/IDE</h2>
+                <div class="tools-grid">
+                    <a href="https://code.visualstudio.com" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-code-slash"></i></div>
+                        <h3>VS Code</h3>
+                        <p>轻量级代码编辑器</p>
+                    </a>
+                    <a href="https://www.jetbrains.com" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-braces"></i></div>
+                        <h3>JetBrains</h3>
+                        <p>专业开发IDE系列</p>
+                    </a>
+                    <a href="https://neovim.io" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-terminal"></i></div>
+                        <h3>Neovim</h3>
+                        <p>可扩展的文本编辑器</p>
+                    </a>
+                    <a href="https://replit.com" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-cloud"></i></div>
+                        <h3>Replit</h3>
+                        <p>协作式在线IDE</p>
+                    </a>
+                </div>
+            </div>
 
-<div class="tool-item">
-  <h4>MongoDB</h4>
-  <p>面向文档的NoSQL数据库，提供高性能和易扩展性</p>
-  <div class="tool-tags">
-    <span>免费增值</span>
-  </div>
-  <a href="https://www.mongodb.com" class="visit-link">访问官网</a>
-</div>
+            <div class="category" id="utilities">
+                <h2><i class="bi bi-tools"></i> 实用工具</h2>
+                <div class="tools-grid">
+                    <a href="https://github.com" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-github"></i></div>
+                        <h3>GitHub</h3>
+                        <p>代码托管和协作平台</p>
+                    </a>
+                    <a href="https://stackoverflow.com" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-stack"></i></div>
+                        <h3>Stack Overflow</h3>
+                        <p>开发者问答社区</p>
+                    </a>
+                    <a href="https://regex101.com" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-regex"></i></div>
+                        <h3>Regex101</h3>
+                        <p>正则表达式测试工具</p>
+                    </a>
+                    <a href="https://jwt.io" class="tool-card" target="_blank">
+                        <div class="tool-icon"><i class="bi bi-key"></i></div>
+                        <h3>JWT.io</h3>
+                        <p>JWT调试工具</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
 
-<div class="tool-item">
-  <h4>Postman</h4>
-  <p>强大的API测试工具，简化API开发和调试过程</p>
-  <div class="tool-tags">
-    <span>免费增值</span>
-  </div>
-  <a href="https://www.postman.com" class="visit-link">访问官网</a>
-</div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 DevToolKit - 开发者工具导航 | <a href="#" id="add-tool">提交工具</a></p>
+        </div>
+    </footer>
 
-<div class="tool-item">
-  <h4>Express.js</h4>
-  <p>Node.js Web应用框架，提供一组强大的功能来构建Web应用</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费</span>
-  </div>
-  <a href="https://expressjs.com" class="visit-link">访问官网</a>
-</div>
+    <div id="add-tool-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>提交新工具</h2>
+            <form id="tool-form">
+                <div class="form-group">
+                    <label for="tool-name">工具名称</label>
+                    <input type="text" id="tool-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="tool-url">网址</label>
+                    <input type="url" id="tool-url" required>
+                </div>
+                <div class="form-group">
+                    <label for="tool-desc">简短描述</label>
+                    <textarea id="tool-desc" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tool-category">分类</label>
+                    <select id="tool-category" required>
+                        <option value="">选择分类</option>
+                        <option value="frontend">前端开发</option>
+                        <option value="backend">后端开发</option>
+                        <option value="design">设计工具</option>
+                        <option value="editors">代码编辑器/IDE</option>
+                        <option value="utilities">实用工具</option>
+                    </select>
+                </div>
+                <button type="submit">提交</button>
+            </form>
+        </div>
+    </div>
 
-<div class="tool-item">
-  <h4>Infisical</h4>
-  <p>开源安全工具，管理跨项目和环境的密钥和凭证</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费增值</span>
-  </div>
-  <a href="https://infisical.com" class="visit-link">访问官网</a>
-</div>
-
-<!-- 移动开发工具 -->
-<h3>移动开发工具</h3>
-
-<div class="tool-item">
-  <h4>Flutter</h4>
-  <p>Google的UI工具包，用于从单一代码库构建多平台应用</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费</span>
-  </div>
-  <a href="https://flutter.dev" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>React Native</h4>
-  <p>使用React构建原生移动应用的框架</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费</span>
-  </div>
-  <a href="https://reactnative.dev" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Android Studio</h4>
-  <p>Google官方的Android应用开发IDE</p>
-  <div class="tool-tags">
-    <span>免费</span>
-  </div>
-  <a href="https://developer.android.com/studio" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Xcode</h4>
-  <p>苹果官方的iOS应用开发IDE</p>
-  <div class="tool-tags">
-    <span>免费</span>
-  </div>
-  <a href="https://developer.apple.com/xcode" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Ionic</h4>
-  <p>基于Web技术构建跨平台移动应用的框架</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费增值</span>
-  </div>
-  <a href="https://ionicframework.com" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Appium</h4>
-  <p>开源自动化测试工具，用于原生、混合和移动Web应用</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费</span>
-  </div>
-  <a href="https://appium.io" class="visit-link">访问官网</a>
-</div>
-
-<!-- DevOps工具 -->
-<h3>DevOps工具</h3>
-
-<div class="tool-item">
-  <h4>Docker</h4>
-  <p>容器平台，帮助开发者构建、共享和运行应用</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费增值</span>
-  </div>
-  <a href="https://www.docker.com" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>GitHub</h4>
-  <p>代码托管和协作平台，提供版本控制和项目管理</p>
-  <div class="tool-tags">
-    <span>免费增值</span>
-  </div>
-  <a href="https://github.com" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Jenkins</h4>
-  <p>开源自动化服务器，支持构建、部署和自动化</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费</span>
-  </div>
-  <a href="https://www.jenkins.io" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Kubernetes</h4>
-  <p>容器编排系统，用于自动部署、扩展和管理容器化应用</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费</span>
-  </div>
-  <a href="https://kubernetes.io" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Terraform</h4>
-  <p>基础设施即代码工具，用于构建、改变和版本化基础设施</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费增值</span>
-  </div>
-  <a href="https://www.terraform.io" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Sentry</h4>
-  <p>错误跟踪和性能监控工具，帮助识别代码中的错误</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费增值</span>
-  </div>
-  <a href="https://sentry.io" class="visit-link">访问官网</a>
-</div>
-
-<!-- AI/机器学习工具 -->
-<h3>AI/机器学习工具</h3>
-
-<div class="tool-item">
-  <h4>GitHub Copilot</h4>
-  <p>AI编程助手，提供实时代码建议和自动补全</p>
-  <div class="tool-tags">
-    <span>付费</span>
-  </div>
-  <a href="https://github.com/features/copilot" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Cursor</h4>
-  <p>基于AI的代码编辑器，结合VS Code框架和先进AI功能</p>
-  <div class="tool-tags">
-    <span>免费增值</span>
-  </div>
-  <a href="https://cursor.sh" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>TensorFlow</h4>
-  <p>Google开发的开源机器学习框架</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费</span>
-  </div>
-  <a href="https://www.tensorflow.org" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>PyTorch</h4>
-  <p>Facebook开发的开源机器学习库</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费</span>
-  </div>
-  <a href="https://pytorch.org" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Dify</h4>
-  <p>开源AI应用开发平台，简化生成式AI解决方案的构建</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费增值</span>
-  </div>
-  <a href="https://dify.ai" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Windsurf</h4>
-  <p>AI辅助工具，支持自带API密钥的完全免费使用</p>
-  <div class="tool-tags">
-    <span>免费</span>
-  </div>
-  <a href="https://windsurf.io" class="visit-link">访问官网</a>
-</div>
-
-<!-- 设计与协作工具 -->
-<h3>设计与协作工具</h3>
-
-<div class="tool-item">
-  <h4>Figma</h4>
-  <p>基于Web的设计工具，支持协作和原型设计</p>
-  <div class="tool-tags">
-    <span>免费增值</span>
-  </div>
-  <a href="https://www.figma.com" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Sketch</h4>
-  <p>macOS上的矢量图形编辑器，用于UI/UX设计</p>
-  <div class="tool-tags">
-    <span>付费</span>
-  </div>
-  <a href="https://www.sketch.com" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Excalidraw</h4>
-  <p>手绘风格的在线绘图工具，适合线框图和示意图</p>
-  <div class="tool-tags">
-    <span>开源</span> <span>免费</span>
-  </div>
-  <a href="https://excalidraw.com" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Jira</h4>
-  <p>项目管理工具，适用于敏捷软件开发</p>
-  <div class="tool-tags">
-    <span>免费增值</span>
-  </div>
-  <a href="https://www.atlassian.com/software/jira" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Trello</h4>
-  <p>基于看板的项目管理工具</p>
-  <div class="tool-tags">
-    <span>免费增值</span>
-  </div>
-  <a href="https://trello.com" class="visit-link">访问官网</a>
-</div>
-
-<div class="tool-item">
-  <h4>Slack</h4>
-  <p>团队协作和沟通平台</p>
-  <div class="tool-tags">
-    <span>免费增值</span>
-  </div>
-  <a href="https://slack.com" class="visit-link">访问官网</a>
-</div>
+    <script src="script.js"></script>
+</body>
+</html>
